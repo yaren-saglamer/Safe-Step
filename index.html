@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safe Step</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="sky-atmosphere" aria-hidden="true">
+      <div class="sky-atmosphere__wash"></div>
+      <div class="sky-atmosphere__depth"></div>
+      <div class="sky-atmosphere__stars"></div>
+      <div class="sky-atmosphere__haze sky-atmosphere__haze--1"></div>
+      <div class="sky-atmosphere__haze sky-atmosphere__haze--2"></div>
+      <div class="sky-atmosphere__haze sky-atmosphere__haze--3"></div>
+      <div class="sky-atmosphere__shooting"></div>
+    </div>
+    <main class="page">
+      <header class="header">
+        <h1 class="title">Safe Step</h1>
+        <p class="subtitle" id="subtitle-text">A quiet place to pause, steady yourself, and reach real support.</p>
+        <p class="support-whisper" id="support-whisper-text">Pause here. Reach someone real.</p>
+      </header>
+
+      <div class="field">
+        <div class="mode-selector">
+          <p id="mode-label">What do you need right now?</p>
+          <div class="modes">
+            <button type="button" class="mode-btn" data-mode="calm_down" aria-pressed="false">Calm down</button>
+            <button type="button" class="mode-btn" data-mode="overwhelmed" aria-pressed="false">Overwhelmed</button>
+            <button type="button" class="mode-btn" data-mode="confused" aria-pressed="false">Confused</button>
+            <button type="button" class="mode-btn" data-mode="talk" aria-pressed="false">Talk</button>
+          </div>
+        </div>
+        <textarea
+          id="notes"
+          class="textarea"
+          rows="10"
+          placeholder="Write what feels heaviest right now. You do not need to explain it perfectly."
+          aria-label="Your message"
+          spellcheck="true"
+        ></textarea>
+      </div>
+
+      <button type="button" class="button" id="support-btn">Get Support</button>
+
+      <section class="response" aria-live="polite">
+        <h2 class="response-heading" id="response-heading-text">Response</h2>
+        <div id="urgent-panel" class="urgent-panel" hidden>
+          <p class="urgent-panel__title" id="urgent-panel-title-text">This feels important right now.</p>
+          <p class="urgent-panel__body" id="urgent-panel-text"></p>
+          <div class="urgent-panel__actions">
+            <button type="button" class="action-btn action-btn--urgent" id="urgent-panel-help">
+              Get urgent help
+            </button>
+            <button type="button" class="action-btn" id="urgent-panel-text-contact">
+              Text trusted contact
+            </button>
+          </div>
+        </div>
+        <div id="response-output" class="response-output"></div>
+        <div class="response-tools" id="response-tools" hidden>
+          <p class="response-tools__label" id="response-tools-label">Adjust this reply</p>
+          <div class="response-tools__buttons">
+            <button type="button" class="action-btn response-tool-btn" id="response-shorter-btn">Shorter</button>
+            <button type="button" class="action-btn response-tool-btn" id="response-softer-btn">Softer</button>
+            <button type="button" class="action-btn response-tool-btn" id="response-direct-btn">More direct</button>
+            <button type="button" class="action-btn response-tool-btn" id="response-next-step-btn">Next step only</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="actions" aria-labelledby="actions-title">
+        <h2 class="actions-heading" id="actions-title">Take one safe next step</h2>
+        <div class="action-buttons" role="group" aria-label="Gentle next steps">
+          <button type="button" class="action-btn" id="action-ready-text" data-hint="If words are hard right now, send a short message and let someone meet you where you are.">
+            Send a ready text
+          </button>
+          <button type="button" class="action-btn" id="action-find-support" data-hint="If you want support beyond one message, this can help you find a real person near you.">
+            Find support near me
+          </button>
+          <button type="button" class="action-btn" id="action-emergency-help" data-hint="If you might act on these thoughts or you are not safe, use emergency help right now.">
+            I need urgent help
+          </button>
+        </div>
+        <p class="action-hint" id="action-hint" hidden></p>
+      </section>
+
+      <section class="contact-card" aria-labelledby="contact-title">
+        <h2 class="actions-heading" id="contact-title">Trusted contact</h2>
+        <p class="contact-card__copy" id="contact-copy-text">Save one person you can reach quickly when words are hard.</p>
+        <div class="contact-card__form">
+          <input
+            type="text"
+            id="trusted-contact-name"
+            class="contact-input"
+            placeholder="Contact name"
+            autocomplete="name"
+          />
+          <input
+            type="tel"
+            id="trusted-contact-phone"
+            class="contact-input"
+            placeholder="Phone number"
+            autocomplete="tel"
+          />
+        </div>
+        <div class="contact-card__actions">
+          <button type="button" class="action-btn" id="save-contact-btn">Save contact</button>
+          <button type="button" class="action-btn" id="text-contact-btn">Text saved contact</button>
+          <button type="button" class="action-btn" id="call-contact-btn">Call saved contact</button>
+          <button type="button" class="action-btn" id="whatsapp-contact-btn">WhatsApp saved contact</button>
+        </div>
+        <p class="action-hint" id="contact-hint" hidden></p>
+      </section>
+
+      <section class="grounding-card" aria-labelledby="grounding-title">
+        <h2 class="actions-heading" id="grounding-title">60-second reset</h2>
+        <p class="grounding-card__copy" id="grounding-copy-text">If everything feels too loud, use one quiet minute to come back to this moment.</p>
+        <div class="grounding-card__actions">
+          <button type="button" class="action-btn" id="grounding-start-btn">Start grounding</button>
+          <button type="button" class="action-btn" id="grounding-stop-btn" hidden>Stop</button>
+        </div>
+        <div class="grounding-card__panel" id="grounding-panel" hidden>
+          <p class="grounding-card__timer" id="grounding-timer">01:00</p>
+          <p class="grounding-card__step" id="grounding-step-text"></p>
+        </div>
+      </section>
+
+      <section class="suggestions-card" aria-labelledby="suggestions-title">
+        <h2 class="actions-heading" id="suggestions-title">Gentle ideas for right now</h2>
+        <p class="suggestions-card__copy" id="suggestions-copy-text">If reaching out feels like too much, try one very small action that softens the next few minutes.</p>
+        <div class="suggestions-card__grid">
+          <button type="button" class="suggestion-tile" id="suggestion-walk-btn">
+            <span class="suggestion-tile__title" id="suggestion-walk-title">Take a short walk</span>
+            <span class="suggestion-tile__text" id="suggestion-walk-text">Even two quiet minutes can loosen the feeling a little.</span>
+          </button>
+          <button type="button" class="suggestion-tile" id="suggestion-water-btn">
+            <span class="suggestion-tile__title" id="suggestion-water-title">Drink cold water</span>
+            <span class="suggestion-tile__text" id="suggestion-water-text">A simple body cue can interrupt the spiral for a moment.</span>
+          </button>
+          <button type="button" class="suggestion-tile" id="suggestion-window-btn">
+            <span class="suggestion-tile__title" id="suggestion-window-title">Go near a window</span>
+            <span class="suggestion-tile__text" id="suggestion-window-text">Change the room around you before asking your mind to change.</span>
+          </button>
+          <button type="button" class="suggestion-tile" id="suggestion-shoulders-btn">
+            <span class="suggestion-tile__title" id="suggestion-shoulders-title">Drop your shoulders</span>
+            <span class="suggestion-tile__text" id="suggestion-shoulders-text">Release a little tension first. You do not need to solve everything yet.</span>
+          </button>
+        </div>
+        <p class="action-hint" id="suggestions-hint" hidden></p>
+      </section>
+    </main>
+    <div class="side-quote left" id="side-quote-left">
+      You do not have to carry this alone tonight.
+    </div>
+
+    <div class="side-quote right" id="side-quote-right">
+      One safe step is enough for now.
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
