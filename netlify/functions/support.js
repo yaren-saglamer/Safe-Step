@@ -71,14 +71,24 @@ ${message}
 
     const data = await response.json();
 
-    const reply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "Şu an yanıt üretilemedi. Lütfen tekrar dene.";
+console.log("GEMINI RAW RESPONSE:", JSON.stringify(data));
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ reply }),
-    };
+const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+if (!reply) {
+  return {
+    statusCode: 500,
+    body: JSON.stringify({
+      error: "Gemini reply missing",
+      details: data,
+    }),
+  };
+}
+
+return {
+  statusCode: 200,
+  body: JSON.stringify({ reply }),
+};
   } catch (error) {
     return {
       statusCode: 500,
